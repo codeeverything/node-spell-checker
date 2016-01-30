@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Random Descriptors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+  <body ng-app="app">
+    <style type="text/css">
+      .randomString {
+        font-size: 3em;
+        font-weight: bold;
+      }
+    </style>
+    <div class="navbar navbar-default">
+      <div class="navbar-inner">
+        <div class="pull-right">
+          <a href="https://c9.io" class="brand">Node &amp; AngularJS Test</a>
+        </div>
+      </div>
+    </div>
+    <div class="container" ng-controller="AppController">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Generate Random Strings</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button ng-click="getRand()" class="btn-lg btn-success">Get Random!</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div ng-bind="randomString" ng-show="randomString" class="alert alert-success text-center randomString"></div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
+    <script>
+      var app = angular.module('app', []);
+      app.service('generator', ['$http', function ($http) {
+        
+        return {
+          rand: function () {
+            return $http.get('/rand');  
+          }
+        };
+        
+      }]);
+      
+      app.controller('AppController', ['$scope', 'generator', function ($scope, generator) {
+        $scope.getRand = function () {
+          generator.rand().success(function (randStr) {
+            $scope.randomString = randStr;
+          });
+        };
+      }]);
+    </script>
+  </body>
+</html>
