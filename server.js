@@ -16,6 +16,7 @@ app.get('/rand/:len?', function (req, res) {
     len = 5
   }
   
+  var styles = ['word-lightest', 'word-lighter', 'word-lightest'];
   var wordList = adjectives;
   var str = '';
   
@@ -29,10 +30,14 @@ app.get('/rand/:len?', function (req, res) {
     str = wordList[rand].charAt(0).toUpperCase();
     str += wordList[rand].slice(1);
     
-    words.push(str)  
+    words.push({
+      word: str,
+      style: styles[i]
+    });
   }
   
-  res.send(words.join(''));
+  // res.send(words.join('').substr(0, 25));
+  res.send(words);
 });
 
 app.listen(process.env.PORT || 3000, function () {
