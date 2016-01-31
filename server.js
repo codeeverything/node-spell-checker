@@ -1,20 +1,15 @@
 var express = require('express');
 var fs = require('fs');
-var path = require("path");
+var path = require('path');
 
 var app = express();
+// set location of static content
 app.use(express.static('client'));
 
-app.get('/rand/:len?', function (req, res) {
+// monitor routes
+app.get('/rand', function (req, res) {
   var words = [];
-  var len = req.params.len;
-  if (!len) {
-    len = 3;
-  }
-  
-  if (len > 5) {
-    len = 5
-  }
+  var len = 3;
   
   var styles = ['word-lightest', 'word-lighter', 'word-lightest'];
   var wordList = adjectives;
@@ -36,10 +31,10 @@ app.get('/rand/:len?', function (req, res) {
     });
   }
   
-  // res.send(words.join('').substr(0, 25));
   res.send(words);
 });
 
+// setup server
 app.listen(process.env.PORT || 3000, function () {
   console.log('Example app listening on port 3000!');
 });
@@ -52,7 +47,6 @@ fs.readFile( 'adjectives.txt', function (err, data) {
     throw err; 
   }
   
-  // console.log(data.toString());
   adjectives = data.toString().split("\n");
 });
 
@@ -63,6 +57,5 @@ fs.readFile( 'animals.txt', function (err, data) {
     throw err; 
   }
   
-  // console.log(data.toString());
   animals = data.toString().split("\n");
 });
