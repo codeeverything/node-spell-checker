@@ -9,7 +9,30 @@ module.exports = function (app, DataLoader) {
       var wordList = data.adjectives;
       var str = '';
       
-      for (var i=0; i<len; i++) {
+      var rand = (Math.random() * (wordList.length - 1)).toFixed(0);
+      str = wordList[rand].split('/')[1];
+      words.push({
+        word: str,
+        style: styles[0]
+      });
+      
+      rand = (Math.random() * (wordList.length - 1)).toFixed(0);
+      str = wordList[rand].split('/')[0];
+      words.push({
+        word: str,
+        style: styles[1]
+      });
+      
+      wordList = data.animals;
+      rand = (Math.random() * (wordList.length - 1)).toFixed(0);
+      str = wordList[rand];
+        
+      words.push({
+        word: str,
+        style: styles[0]
+      });
+      
+      /*for (var i=0; i<len; i++) {
         if (i === len - 1) {
           wordList = data.animals;
         }
@@ -23,7 +46,7 @@ module.exports = function (app, DataLoader) {
           word: str,
           style: styles[i]
         });
-      }
+      }*/
       
       res.send(words);
     });
