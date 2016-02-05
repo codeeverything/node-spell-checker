@@ -10,5 +10,5 @@ app.listen(process.env.PORT || 3000, function () {
   console.log('Example app listening on port 3000!');
 });
 
-var DataLoader = require('./lib/DataLoader.js')(fs);
-var RandController = require('./controller/RandController.js')(app, DataLoader);
+var DataLoader = require('./lib/DataLoader.js')(fs, ['words.txt', 'foods.txt']);
+var RandController = require('./controller/RandController.js')(app, DataLoader.getData());

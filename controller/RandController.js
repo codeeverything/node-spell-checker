@@ -1,7 +1,6 @@
-module.exports = function (app, DataLoader) {
+module.exports = function (app, data) {
     // monitor routes
     app.get('/rand', function (req, res) {
-      var data = DataLoader.getData();
       var words = [];
       var len = 3;
       
