@@ -12,6 +12,7 @@ module.exports = function (app, data) {
       };
       
       function edits1(word) {
+        console.time('edits1()');
         var result = [];
         
         // deletions
@@ -39,11 +40,13 @@ module.exports = function (app, data) {
         }
         
         result = unique(result);
-        
+        console.time('edits1()');
+    
         return result;
       }
       
       function known_edits2(edits) {
+          console.time('known_edits2()');
           var results = [];
           for (var edit in edits) {
             var f = edits1(edits[edit]);
@@ -51,12 +54,13 @@ module.exports = function (app, data) {
           }
           
           console.log(results.length);
+          console.timeEnd('known_edits2()');
           return known(results);
       }
       
       // return the word if it is in the dictionary, otherwise nothing
       function known(words) { 
-        console.time('lookup');
+        console.time('known()');
         console.log(words.length);
         var a = [];
         for(var w in words) {
@@ -68,18 +72,18 @@ module.exports = function (app, data) {
           }
         }
         
-        console.timeEnd('lookup');
+        console.timeEnd('known()');
         return a;
       }
       
       function correct(word) {
-          console.time('check');
+          console.time('correct()');
           var oneEdit = edits1(word);
           var res = known([word]).concat(known(oneEdit).concat(known_edits2(oneEdit)));
           res.sort(function(a, b) {
               return parseInt(b.score) - parseInt(a.score);
           });
-          console.timeEnd('check');
+          console.timeEnd('correct()');
           
           return res;
       }
