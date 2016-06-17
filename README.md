@@ -14,9 +14,7 @@ $ node server.js
 
 Navigate to the API endpoint ```/api/:word```, for example:
 
-```/api/speling```
-
-And you'll be returned an array of possible corrections:
+```/api/speling```, and you'll be returned an array of possible corrections:
 
 ```
 [
