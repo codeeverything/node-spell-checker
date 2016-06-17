@@ -2,7 +2,7 @@
 
 Uses [BK Trees](https://en.wikipedia.org/wiki/BK-tree) and [Levenstein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) to provide spelling correction suggestions via a simple API.
 
-Oringinally inspired by [Peter Norvig's essay on spell checking](http://norvig.com/spell-correct.html), and the references therein.
+Originally inspired by [Peter Norvig's essay on spell checking](http://norvig.com/spell-correct.html), and the references therein.
 
 ## Usage
 
