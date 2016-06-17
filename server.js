@@ -5,9 +5,6 @@ var BKTree = require('./lib/BKTree.js')(util);
 
 var app = module.exports = express();
 
-// set location of static content
-app.use(express.static('client'));
-
 app.listen(process.env.PORT || 3000, function () {
   console.log('Example app listening on port 3000!');
 });
