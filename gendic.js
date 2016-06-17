@@ -14,6 +14,7 @@ words = fs.readFileSync( dataPath + files[0] ).toString();
 // see: http://stackoverflow.com/questions/14061349/regular-expression-match-all-words-but-match-unique-words-only-once
 words = words.match(/([a-zA-Z]+\b)(?!.*\1\b)/g);
 
+var dic = [];
 var wordObj = {};
 for (var i=0; i < words.length; i++) {
     var word = words[i].toLowerCase();
@@ -21,11 +22,11 @@ for (var i=0; i < words.length; i++) {
         continue;
     }
     
-    if (!wordObj.hasOwnProperty(words[i])) {
+    dic.push
+    if (!wordObj.hasOwnProperty(word)) {
         wordObj[word] = 1;
-    } else {
-        wordObj[word]++;
-    }
+        dic.push(word);
+    } 
 }
 
-fs.writeFile(dataPath + 'dic.json', JSON.stringify(wordObj, null, 2) , 'utf-8');
+fs.writeFile(dataPath + 'dic.json', JSON.stringify(dic, null, 2) , 'utf-8');
