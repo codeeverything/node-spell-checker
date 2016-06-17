@@ -12,26 +12,16 @@ app.listen(process.env.PORT || 3000, function () {
   console.log('Example app listening on port 3000!');
 });
 
+// get dictionary data
 var DataLoader = require('./lib/DataLoader.js')(fs);
+var data = DataLoader.getData();
 
 // Build the tree 
-console.log('build tree');
-var data = DataLoader.getData();
 var term = data.pop();
 var tree = new BKTree(term);
 while (term = data.pop()) {
     tree.add(term);
 }
-// var tree = new BKTree('book');
-// tree.add('books');
-// tree.add('cake');
-// tree.add('boo');
-// tree.add('cape');
-// tree.add('boon');
-// tree.add('cook');
-// tree.add('cart');
-// console.log('tree built');
-// console.log(util.inspect(tree, false, null));
-// console.log(tree.search('caqe', 2));
 
+// handle spell check requests
 var SpellController = require('./controller/SpellController.js')(app, tree);

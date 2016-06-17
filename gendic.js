@@ -1,9 +1,13 @@
+/**
+ * Generate a dictionary file from a source file
+ * 
+ * @author  Mike Timms <mike@codeeverything.com>
+ */
 var fs = require('fs');
 var dataPath = 'data/';
 
 var files = ['big.txt'];
 
-console.log('gen dic');
 // load our data
 var words;
 
@@ -22,7 +26,6 @@ for (var i=0; i < words.length; i++) {
         continue;
     }
     
-    dic.push
     if (!wordObj.hasOwnProperty(word)) {
         wordObj[word] = 1;
         dic.push(word);
