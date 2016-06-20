@@ -34,3 +34,11 @@ Navigate to the API endpoint ```/api/:word```, for example:
 ## Generating the dictionary
 
 A default dictionary file is provided in ```data/dic.json```, but you can run ```node gendic.js``` if you want to generate your own. Simply change this line ```var files = ['big.txt'];``` so that the array contains your own source text file (should be the only entry).
+
+## Improvements
+
+- Define some statistical model to better rank the suggestions. Cues could be taken from Peter Norvig's essay by using term frequency from the dictionary source text. 
+  - Based on previous correction selections
+  - Based on common misspellings of words
+  - With context of surrounding words/grammer
+- 
